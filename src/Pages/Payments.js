@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import './Payments.css';
 import Sidenav from './Sidenav';
 
-function getPreviousBalances() {
-  return [
-    { id: 1, amount: 150, date: '2023-01-15' },
-    { id: 2, amount: 200, date: '2023-02-20' },
-  ];
-}
+
 
 function Payments() {
+
+  function getPreviousBalances() {
+    return [
+      { id: 1, amount: 15000, date: '2023-01-15' },
+      { id: 2, amount: 2000, date: '2023-02-20' },
+    ];
+  }
+
   const [paymentData, setPaymentData] = useState({
     paymentMethod: '',
     cardNumber: '',

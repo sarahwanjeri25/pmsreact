@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import './Feedback.css';
 import Sidenav from './Sidenav';
 
-function getInitialFeedbackData() {
-  return {
-    name: '',
-    email: '',
-    rating: '',
-    comments: '',
-  };
-}
+
 
 function Feedbackpage() {
+  function getInitialFeedbackData() {
+    return {
+      name: '',
+      email: '',
+      rating: '',
+      comments: '',
+    };
+  }
   const [feedbackData, setFeedbackData] = useState(getInitialFeedbackData());
 
   function getInitialSubmittedFeedback() {

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
+import {useNavigate } from 'react-router-dom';
 import MuiAppBar from '@mui/material/AppBar';
 import MuiDrawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +13,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import PersonIcon from '@mui/icons-material/Person';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import PaymentIcon from '@mui/icons-material/Payment';
 import FeedbackIcon from '@mui/icons-material/Feedback';
@@ -20,15 +22,9 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import IconButton from '@mui/material/IconButton';
 import { useState } from 'react';
 
-import Home from './Home';
-import Profile from './Profile';
-import Appointments from './Appointments';
-import Records from './Records';
-import Payments from './Payments';
-import Feedback from './Feedback';
+
 
 const drawerWidth = 240;
-
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -97,7 +93,7 @@ const Drawer = styled(MuiDrawer, {
 function Sidenav() {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const [selectedComponent, setSelectedComponent] = useState('Home');
+  const navigate= useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -107,45 +103,27 @@ function Sidenav() {
     setOpen(false);
   };
 
-  const handleMenuItemClick = (component) => {
-    setSelectedComponent(component);
-  };
-
-  const renderComponent = () => {
-    switch (selectedComponent) {
-      case 'Home':
-        return <Home />;
-      case 'Profile':
-        return <Profile/>;
-      case 'Appointments':
-        return <Appointments />;
-      case 'Records':
-        return <Records />;
-      case 'Payments':
-        return <Payments />;
-      case 'Feedback':
-        return <Feedback />;
-      default:
-        return <Home />;
-    }
+  const handleMenuItemClick = (path) => {
+    navigate(path);
   };
 
   return (
     <div>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open} style={{backgroundColor:'#AB274F',}}
+>
         <Toolbar>
           <IconButton
-            color="inherit"
+            color="#AB274F"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ ...(open && { display: 'none' }) }}
+            sx={{ ...(open && { display: 'none', marginLeft :'0px' }) }}
           >
             <ChevronRightIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Patient Management System
+          <Typography variant="h6" noWrap component="div"  style={{fontFamily: 'cursive' , textAlign:'center'}}>
+            DocStop
           </Typography>
         </Toolbar>
       </AppBar>
@@ -157,49 +135,48 @@ function Sidenav() {
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItem button onClick={() => handleMenuItemClick('Home')}>
+          <ListItem button onClick={() => handleMenuItemClick('/')}>
             <ListItemIcon>
-              <HomeIcon />
+              <HomeIcon  />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
-          <ListItem button onClick={() => handleMenuItemClick('Profile')}>
-            <ListItemIcon>
-              <HomeIcon />
+          <ListItem button onClick={() => handleMenuItemClick('/profile')}>
+            <ListItemIcon >
+              <PersonIcon  />
             </ListItemIcon>
             <ListItemText primary="Profile" />
           </ListItem>
-          <ListItem button onClick={() => handleMenuItemClick('Appointments')}>
+          <ListItem button onClick={() => handleMenuItemClick('/appointments')}>
             <ListItemIcon>
               <CalendarTodayIcon />
             </ListItemIcon>
             <ListItemText primary="Appointments" />
           </ListItem>
-          <ListItem button onClick={() => handleMenuItemClick('Records')}>
+          <ListItem button onClick={() => handleMenuItemClick('/records')}>
             <ListItemIcon>
               <MedicalServicesIcon />
             </ListItemIcon>
             <ListItemText primary="Records" />
           </ListItem>
-          <ListItem button onClick={() => handleMenuItemClick('Payments')}>
-            <ListItemIcon>
+          <ListItem button onClick={() => handleMenuItemClick('/payments')}>
+            <ListItemIcon >
               <PaymentIcon />
             </ListItemIcon>
             <ListItemText primary="Payments" />
           </ListItem>
-          <ListItem button onClick={() => handleMenuItemClick('Feedback')}>
-            <ListItemIcon>
+          <ListItem button onClick={() => handleMenuItemClick('/feedback')}>
+            <ListItemIcon >
               <FeedbackIcon />
             </ListItemIcon>
             <ListItemText primary="Feedback" />
           </ListItem>
         </List>
       </Drawer>
-      <main>
-        {renderComponent()}
-      </main>
+      
     </div>
   );
 }
 
 export default Sidenav;
+

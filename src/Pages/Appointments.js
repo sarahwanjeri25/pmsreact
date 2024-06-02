@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
-import Sidenav from "./Sidenav";
-
-function getDoctors() {
-  return [
-    { id: 1, name: 'Dr. Smith', specialization: 'Cardiology', available: ['Monday', 'Wednesday', 'Friday'] },
-    { id: 2, name: 'Dr. Johnson', specialization: 'Dermatology', available: ['Tuesday', 'Thursday'] },
-    { id: 3, name: 'Dr. Lee', specialization: 'Neurology', available: ['Monday', 'Thursday'] },
-  ];
-}
+import Sidenav from './Sidenav';
+import "./Appointments.css";
 
 function Appointments() {
+  function getDoctors() {
+    return [
+      { id: 1, name: 'Dr. Smith', specialization: 'Cardiology', available: ['Monday', 'Wednesday', 'Friday'] },
+      { id: 2, name: 'Dr. Johnson', specialization: 'Dermatology', available: ['Tuesday', 'Saturday' ,'Sunday'] },
+      { id: 3, name: 'Dr. Ranvir', specialization: 'Neurology', available: ['Sunday', 'Monday', 'Friday'] },
+      { id: 4, name: 'Dr. Kinuthia', specialization: 'Orthopedic', available: ['Tuesday', 'Saturday'] },
+      { id: 5, name: 'Dr. Tirtha', specialization: 'Gastrology', available: ['Wednesday', 'Thursday'] },
+      { id: 6, name: 'Dr. Jude', specialization: 'Opthamologygy', available: ['Saturday', 'Thursday'] },
+
+   
+    ];
+  }
   const doctors = getDoctors();
   const [appointmentData, setAppointmentData] = useState({
     name: '',

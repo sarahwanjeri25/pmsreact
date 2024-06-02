@@ -1,11 +1,14 @@
-
+*{
+  font-family:cursive ;
+  color:#E33469;
+}
 form {
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid antiquewhite;
     border-radius: 10px;
-    background-color: #f9f9f9;
+    background-color: #d4baba;
   }
   
   div {
